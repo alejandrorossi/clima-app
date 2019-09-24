@@ -1,0 +1,26 @@
+<mat-card class="today-c">
+
+  <mat-card-header>
+    <mat-card-title>{{date}}</mat-card-title>
+
+  </mat-card-header>
+  <div class="row">
+    <div class="col nopadding">
+      <div>
+        <i class="{{icon}} bigger-font ml-2"></i>
+        <span class="bigger-font ml-3">{{temp}}</span>
+        <span class="unit-t">
+          <span class="ml-1 temperature">ºC</span>
+          <span class="ml-1">|</span>
+          <span class="ml-1 temperature">ºF</span>
+        </span>
+      </div>
+     <hr>
+      
+      <p>{{dat | date:'dd/MM/yyyy'}}</p>
+      <p><b>Prob. precipitaciones:</b> {{precip}}%</p>
+      <p><b>Humedad: </b>{{hum}}% </p>
+      <p><b>Viento:</b> {{win}} Km/h </p>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,75 @@
+<div class="container-fluid lan-page">
+  <div class="row">
+    <div class="col nopadding">
+      <mat-toolbar color="primary" class="mat-elevation-z4" style="height:70px">
+        <mat-toolbar-row>
+
+          <form class="barra-form mt-4  ">
+            <mat-form-field class="full-w">
+              <input type="text" placeholder="El tiempo en..." matInput [formControl]="myControl"
+                [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of allPlaces" [value]="option.name" (click)="search()">
+                  {{option.country}} / {{option.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <i matSuffix class="fas fa-search btnn" matRipple [matRippleCentered]="true" [matRippleRadius]="25"
+                [matRippleUnbounded]="true" (click)="search()"></i>
+
+            </mat-form-field>
+          </form>
+
+          <span class="rellenar-tb"></span>
+
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+  </div>
+  <div class="row mt-3" *ngIf="myControl.value">
+
+    <div class="col">
+
+      <mat-card class="today-c">
+
+        <mat-card-header>
+          <mat-card-title>{{myControl.value}}</mat-card-title>
+          <mat-card-subtitle>{{curDate | date:'dd/MM/yyyy'}}</mat-card-subtitle>
+        </mat-card-header>
+        <div class="row">
+          <div class="col-sm-7 nopadding">
+            <div>
+              <i class="fas fa-cloud-sun bigger-font ml-2"></i>
+              <span class="bigger-font ml-3">{{today.temperature}}</span>
+              <span class="unit-t">
+                <span class="ml-1">ºC</span>
+                <span class="ml-1">|</span>
+                <span class="ml-1">ºF</span>
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-5">
+
+            <p>Prob. de precipitaciones: {{today.precipitation}}%</p>
+            <p>Humedad: {{today.humidity}}%</p>
+            <p>Viento: {{today.wind}} Km/h </p>
+          </div>
+        </div>
+      </mat-card>
+
+    </div>
+
+    <div class="col"></div>
+  </div>
+
+
+  
+  <div class="row mt-3" *ngIf="myControl.value">
+
+    <div class="col" *ngFor="let day of futureDays">
+      <app-future-day [temp]="day.temperature" [precip]="day.precipitation" [hum]="day.humidity" [win]="day.wind"
+        [dat]="day.date" [icon]="day.icon"></app-future-day>
+    </div>
+
+  </div>
+
+</div>
